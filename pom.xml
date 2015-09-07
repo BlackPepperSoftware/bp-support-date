@@ -16,6 +16,7 @@
 	<name>Black Pepper Support Date</name>
 	<description>Support for working with Java 7 dates.</description>
 	<url>https://github.com/BlackPepperSoftware/bp-support-date</url>
+	<inceptionYear>2014</inceptionYear>
 	
 	<scm>
 		<connection>scm:git:git@github.com:BlackPepperSoftware/bp-support-date.git</connection>
