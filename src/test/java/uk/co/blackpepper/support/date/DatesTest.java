@@ -35,7 +35,7 @@ public class DatesTest {
 	public void newDateWithYearMonthDayReturnsDate() {
 		Date actual = Dates.newDate(1970, 1, 1);
 		
-		assertThat(actual.toString(), is("Thu Jan 01 00:00:00 GMT 1970"));
+		assertThat(toIsoDateTime(actual), is("1970-01-01T00:00:00.000"));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -57,7 +57,7 @@ public class DatesTest {
 	public void newDateWithYearMonthDayHourMinsSecondsReturnsDate() {
 		Date actual = Dates.newDate(1970, 1, 1, 1, 1, 1);
 		
-		assertThat(actual.toString(), is("Thu Jan 01 01:01:01 GMT 1970"));
+		assertThat(toIsoDateTime(actual), is("1970-01-01T01:01:01.000"));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -79,7 +79,7 @@ public class DatesTest {
 	public void newDateWithYearMonthDayHourMinsSecondsMillisReturnsDate() {
 		Date actual = Dates.newDate(1970, 1, 1, 0, 0, 0, 1);
 		
-		assertThat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(actual), is("1970-01-01 00:00:00.001"));
+		assertThat(toIsoDateTime(actual), is("1970-01-01T00:00:00.001"));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -141,5 +141,9 @@ public class DatesTest {
 	@Test
 	public void toSqlTimestampWithNullReturnsNull() {
 		assertThat(Dates.toSqlTimestamp(null), is(nullValue()));
+	}
+
+	private static String toIsoDateTime(Date date) {
+		return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").format(date);
 	}
 }
